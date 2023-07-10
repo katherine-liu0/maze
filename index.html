@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="UTF-8">
+
+		<!-- p5 core library -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+
+		<!-- A-Frame core library -->
+		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+
+		<!-- AFrameP5 library -->
+		<script src="https://craignyu.github.io/aframep5/libraries/aframep5-v2.1.js"></script>
+
+		<!-- sound -->
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/addons/p5.sound.min.js"></script>
+
+		<!-- Your p5 Sketch -->
+		<script src="sketch.js"></script>
+
+		<!-- custom styles -->
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@800&display=swap');
+			body{
+				font-family: 'Roboto Mono', monospace;
+				color: white;
+				font-size: 120%;
+				line-height: 1em;
+			}
+
+			#start,#end,#win{
+				position: absolute;
+				text-align: center;
+        		width: 800px;
+        		height: 500px;
+        		top: 50%;
+        		left: 50%;
+        		margin-left: -400px;
+        		margin-top: -250px;
+        		border: 5px solid white;
+        		z-index: 100;
+        		background-color: #0000A0;
+        		padding: 20px;
+			}
+
+			img{
+				display: block;
+				margin: auto;
+			}
+
+			#info{
+				position: absolute;
+				z-index: 101;
+			}
+
+			.game{
+				background-color: #0000A0;
+				color: white;
+				width: 120px;
+				padding: 10px;
+				border: none;
+				font-size: 110%;
+				transition-duration: 0.2s
+			}
+
+			#info_button{
+				background-color: #0000A0;
+				color: white;
+				width: 80px;
+				padding: 10px;
+				border: none;
+				font-size: 80%;
+				transition-duration: 0.2s
+			}
+
+			button:hover{
+				background-color: white;
+				color: #0000A0;
+			}
+			#info_button:hover{
+				background-color: white;
+				color: #0000A0;
+			}
+		</style>
+	</head>
+	<body>
+		 <div id="start">
+		 	<img src="start.png" width="800" height=auto>
+		 	<button class="game" onclick="gameStart();">START</button>
+		 </div>
+
+
+		 <div id="info">
+		 	<button id="info_button" onclick="showInfo();">ESC INFO</button>
+		 </div>
+
+		 <div id="end" style="display:none;">
+		 	<img src="end.png" width="800" height=auto>
+		 	<button class="game" onclick="gameRestart();">RESTART</button>
+		 </div>
+
+		 <div id="win" style="display:none;">
+		 	<img src="win.png" width="800" height=auto>
+		 	<button class="game" onclick="gameWinRestart();">RESTART</button>
+		 </div>
+
+
+		<!-- container to hold our VR scene - make sure to give this element an ID of 'VRScene' -->
+	    <a-scene id="VRScene">
+
+	    	<!--
+		       The 'a-assets' container is used to load in any external artwork you may want to use as "textures" for your objects. Ensure that this element has an ID of 'VRAssets'
+
+		       Textures can be loaded by creating a new 'a-asset' tag inside of the 'a-assets' container.
+		       When doing this you will need to make sure to give your textures a unique ID -
+		       this will be used by p5 to create new objects.
+
+		       Example:
+
+		       <img id="ITEM_ID_GOES_HERE" src="images/gold_block.png">
+				-->
+
+				<a-assets id="VRAssets">
+					<img src="image/sky.png" id="sky1">
+
+					<img src="image/blackandwhite.png" id="bw">
+					
+					<a-asset id="bunny_obj" src="bunny/model.obj"></a-asset>
+					<a-asset id="bunny_mtl" src="bunny/materials.mtl"></a-asset>
+
+					<a-asset id="cloud_obj" src="cloud/model.obj"></a-asset>
+					<a-asset id="cloud_mtl" src="cloud/materials.mtl"></a-asset>
+
+				</a-assets>
+
+	    </a-scene>
+
+	</body>
+</html>
